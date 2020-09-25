@@ -1,8 +1,8 @@
 SHELL = bash
 SWIG_VERSION = 4.0.2
 CGO_FILES = Client.a Client.h
-SWIG_FILES = Client.cs secrethub_wrap.c SecretHubXGOPINVOKE.cs Secret.cs SecretVersion.cs
-TEST_FILES = Client.cs SecretHubXGOPINVOKE.cs Secret.cs SecretVersion.cs
+CSHARP_FILES = Client.cs SecretHubXGOPINVOKE.cs Secret.cs SecretVersion.cs
+SWIG_FILES = secrethub_wrap.c
 OUT_FILES = secrethub_wrap.o libSecretHubXGO.so SecretHubXGO.dll
 XGO_DIR = ./secrethub-xgo
 DEPS = secrethub_wrap.c Client.h
@@ -56,7 +56,7 @@ endef
 .PHONY: dotnet-test
 dotnet-test: lib
 	@echo "Testing the library..."
-	@cp $(TEST_FILES) test
+	@cp $(CSHARP_FILES) test
 	@dotnet publish test/secrethub.csproj -o build --nologo
 ifeq (OS_VAR, Windows_NT)
 	@mv SecretHubXGOSe.dll build
@@ -105,5 +105,5 @@ deps:
 .PHONY: clean
 clean:
 	@rm -f $(XGO_DIR)/go.sum
-	@rm -f $(CGO_FILES) $(SWIG_FILES) $(OUT_FILES) $(addprefix test/, $(TEST_FILES))
+	@rm -f $(CGO_FILES) $(SWIG_FILES) $(OUT_FILES) $(addprefix test/, $(CSHARP_FILES))
 	@rm -rf build bin obj test/bin test/obj

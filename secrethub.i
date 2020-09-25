@@ -26,7 +26,7 @@
     // uuids are read only
 %}
 
-// Map return value of ResolveEnv to map[string]string.
+// Map return value of ResolveEnv to Dictionary<string, string>.
 %typemap(cstype) char* ResolveEnv "System.Collections.Generic.Dictionary<string,string>"
 %typemap(csout, excode=SWIGEXCODE) char* ResolveEnv {
     var res = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, string>>($imcall);
