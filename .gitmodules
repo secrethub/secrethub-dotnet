@@ -1,4 +1,4 @@
 [submodule "secrethub-xgo"]
 	path = secrethub-xgo
-	url = https://github.com/secrethub/secrethub-xgo/
+	url = git@github.com:secrethub/secrethub-xgo.git
 	branch = feature/simplify-interface
