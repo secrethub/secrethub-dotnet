@@ -11,7 +11,11 @@ jobs:
         with:
           submodules: true
       - run: go tool dist list
-      - run: cd secrethub-xgo && set GOARCH=386 && set CGO_ENABLED=1 && go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
+      - run: |
+          cd secrethub-xgo
+          set GOARCH=386
+          set CGO_ENABLED=1
+          go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
       - run: choco install swig
       - run: swig -csharp -namespace SecretHub secrethub.i
       - run: |
