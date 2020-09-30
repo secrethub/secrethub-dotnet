@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/upload-artifact@v2
+#      - uses: actions/upload-artifact@v2
       - run: tree "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
       - run: cl.exe /?
       - run: choco install swig
