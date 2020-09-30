@@ -8,7 +8,8 @@ jobs:
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v2
-#      - uses: actions/upload-artifact@v2
+        with:
+          submodules: true
       - run: |
           "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
           cl.exe /?
