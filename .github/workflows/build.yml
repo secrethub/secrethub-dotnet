@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - run: choco install mingw
+      - run: choco list
       - run: |
           cd secrethub-xgo
           set GOARCH=386
