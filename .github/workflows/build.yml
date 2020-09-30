@@ -13,6 +13,10 @@ jobs:
         with: 
           name: Client.a
           path: ./Client.a
+      - uses: actions/upload-artifact@v2 
+        with: 
+          name: Client.h
+          path: ./Client.h
   build-win32-dll:
     needs: [build-win32-a]
     defaults:
@@ -27,11 +31,15 @@ jobs:
         with: 
           name: Client.a
           path: ./Client.a
+      - uses: actions/download-artifact@v2 
+        with: 
+          name: Client.h
+          path: ./Client.h
       - run: choco install swig
       - run: swig -csharp -namespace SecretHub secrethub.i
       - run: |
           call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
-          cl.exe /O2 /Fo secrethub_wrap.o secrethub_wrap.c
+          cl.exe /O2 /Fo"secrethub_wrap.o" secrethub_wrap.c
       - uses: actions/upload-artifact@v2 
         with: 
           name: secrethub_wrap.o
