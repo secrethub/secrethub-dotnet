@@ -9,17 +9,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 #      - uses: actions/upload-artifact@v2
-      - run: '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"'
-      - run: cl.exe /?
+      - run: |
+          '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"'
+          cl.exe /?
       - run: choco install swig
       - run: swig -csharp -namespace SecretHub secrethub.i
       - run: cd secrethub-xgo && GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
-      - run: cl.exe /O2 /Fo secrethub_wrap.o secrethub_wrap.c
+      - run: |
+          '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"'
+          cl.exe /O2 /Fo secrethub_wrap.o secrethub_wrap.c
       - uses: actions/upload-artifact@v2 
         with: 
           name: secrethub_wrap.o
           path: ./secrethub_wrap.o
-      - run: link.exe /DLL /OUT:SecretHubXGO.dll secrethub_wrap.o Client.a
+      - run: |
+          '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"'
+          link.exe /DLL /OUT:SecretHubXGO.dll secrethub_wrap.o Client.a
       - uses: actions/upload-artifact@v2 
         with: 
           name: SecretHubXGO.dll
