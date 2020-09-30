@@ -10,12 +10,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - run: choco install mingw -x86 --force
+      - run: pacman -S mingw-w64-i686-gcc
       - run: |
           cd secrethub-xgo
           set GOARCH=386
           set CGO_ENABLED=1
-          set CC=i686-w64-mingw32-gcc.exe
+          set CC=i686-w64-mingw32-gcc
           go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
       - run: choco install swig
       - run: swig -csharp -namespace SecretHub secrethub.i
