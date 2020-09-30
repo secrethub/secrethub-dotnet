@@ -14,6 +14,7 @@ jobs:
           cd secrethub-xgo
           set GOARCH=386
           set CGO_ENABLED=1
+          set CC=i686-w64-mingw32-gcc.exe
           go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
       - run: choco install swig
       - run: swig -csharp -namespace SecretHub secrethub.i
