@@ -30,11 +30,11 @@ jobs:
       - uses: actions/download-artifact@v2 
         with: 
           name: Client.a
-          path: ./Client.a
+          path: .
       - uses: actions/download-artifact@v2 
         with: 
           name: Client.h
-          path: ./Client.h
+          path: .
       - run: choco install swig
       - run: swig -csharp -namespace SecretHub secrethub.i
       - run: |
