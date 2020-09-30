@@ -1,21 +1,21 @@
 name: build
 on: [push]
-defaults:
-  run:
-    shell: cmd
 jobs:
-  check-bats-version:
+  build-win32-dll:
+    defaults:
+      run:
+        shell: cmd
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - run: pacman -S mingw-w64-i686-gcc
       - run: |
+          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
           cd secrethub-xgo
           set GOARCH=386
           set CGO_ENABLED=1
-          set CC=i686-w64-mingw32-gcc
+          set CC=cl.exe
           go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
       - run: choco install swig
       - run: swig -csharp -namespace SecretHub secrethub.i
