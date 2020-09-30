@@ -2,7 +2,7 @@ name: build
 on: [push]
 defaults:
   run:
-    shell: cmd.exe
+    shell: cmd
 jobs:
   check-bats-version:
     runs-on: windows-2019
