@@ -14,6 +14,7 @@ jobs:
           name: Client.a
           path: ./Client.a
   build-win32-dll:
+    needs: [build-win32-a]
     defaults:
       run:
         shell: cmd
