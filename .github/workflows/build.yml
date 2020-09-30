@@ -17,6 +17,7 @@ jobs:
           set CGO_ENABLED=1
           set CC=cl.exe
           go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
+      - run: dir
       - run: choco install swig
       - run: swig -csharp -namespace SecretHub secrethub.i
       - run: |
