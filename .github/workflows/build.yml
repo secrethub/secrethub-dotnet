@@ -15,7 +15,7 @@ jobs:
           cl.exe /?
       - run: choco install swig
       - run: swig -csharp -namespace SecretHub secrethub.i
-      - run: cd secrethub-xgo && set GOARCH=amd64 && set CGO_ENABLED=1 && go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
+      - run: cd secrethub-xgo && set GOARCH=386 && set CGO_ENABLED=1 && go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
       - run: |
           "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
           cl.exe /O2 /Fo secrethub_wrap.o secrethub_wrap.c
