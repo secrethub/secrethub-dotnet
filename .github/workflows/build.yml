@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
 #      - uses: actions/upload-artifact@v2
       - run: |
-          '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"'
+          'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat'
           cl.exe /?
       - run: choco install swig
       - run: swig -csharp -namespace SecretHub secrethub.i
