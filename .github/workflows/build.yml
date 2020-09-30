@@ -35,19 +35,18 @@ jobs:
         with: 
           name: Client.h
           path: .
+      - run: choco install mingw -x86 --force
       - run: choco install swig
       - run: swig -csharp -namespace SecretHub secrethub.i
       - run: |
-          type secrethub_wrap.c
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
-          cl.exe /O2 /Fo"secrethub_wrap.o" secrethub_wrap.c
+          i686-w64-mingw32-gcc -O2 -o secrethub_wrap.o secrethub_wrap.c
       - uses: actions/upload-artifact@v2 
         with: 
           name: secrethub_wrap.o
           path: ./secrethub_wrap.o
       - run: |
           call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
-          link.exe /DLL /OUT:SecretHubXGO.dll secrethub_wrap.o Client.a
+          i686-w64-mingw32-ld -shared -o SecretHubXGO.dll secrethub_wrap.o Client.a
       - uses: actions/upload-artifact@v2 
         with: 
           name: SecretHubXGO.dll
