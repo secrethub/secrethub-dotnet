@@ -12,11 +12,11 @@ namespace SecretHubTest
             SecretHub.SecretVersion expectedSecret = new SecretHub.SecretVersion();
             var client = new SecretHub.Client();
             SecretHub.SecretVersion secret = client.Read("secrethub/xgo/dotnet/test/test-secret");
-            Assert.Equal(new Guid("7e73f564-036b-4a5a-9ed6-45d5fb912938"), secret.SecretVersionID);
+            Assert.Equal(new Guid("529beaaf-9934-432f-a6b0-c5cb7e847458"), secret.SecretVersionID);
             Assert.Equal(new Guid("c37ec233-e168-436d-8b06-48c52aa22d5e"), secret.Secret.SecretID);
-            Assert.Equal(2, secret.Version);
+            Assert.Equal(3, secret.Version);
             Assert.Equal("super_secret_value", secret.Data);
-            Assert.Equal(DateTime.Parse("10/1/2020 10:52:19 AM",
+            Assert.Equal(DateTime.Parse("10/1/2020 2:22:08 PM",
                           System.Globalization.CultureInfo.InvariantCulture), secret.CreatedAt);
             Assert.Equal(DateTime.Parse("10/1/2020 10:49:33 AM",
                           System.Globalization.CultureInfo.InvariantCulture), secret.Secret.CreatedAt);
