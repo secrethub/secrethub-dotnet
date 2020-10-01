@@ -59,7 +59,7 @@ dotnet-test: lib
 	@cp $(CSHARP_FILES) test
 	@dotnet publish test/secrethub.csproj -o build --nologo
 ifeq (OS_VAR, Windows_NT)
-	@mv SecretHubXGOSe.dll build
+	@mv SecretHubXGO.dll build
 else
 	@mv libSecretHubXGO.so build
 endif
