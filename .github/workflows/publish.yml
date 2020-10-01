@@ -1,0 +1,14 @@
+name: publish
+on:
+  push:
+    branch:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: make nupkg
