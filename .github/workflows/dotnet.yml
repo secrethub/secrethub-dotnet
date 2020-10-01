@@ -11,3 +11,13 @@ jobs:
       - run: make dotnet-test
         env:
           SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
+  
+  publish:
+    runs-on: ubuntu-20.04
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: sudo apt install -y gcc-mingw-w64
+      - run: make nupkg
