@@ -1,0 +1,10 @@
+name: test
+on: [push]
+jobs:
+  build-a:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: export SECRETHUB_CREDENTIAL=$(cat test_sercive.cred) && make dotnet-test
