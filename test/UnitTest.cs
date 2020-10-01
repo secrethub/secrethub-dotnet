@@ -11,7 +11,7 @@ namespace SecretHubTest
         {
             SecretHub.SecretVersion expectedSecret = new SecretHub.SecretVersion();
             var client = new SecretHub.Client();
-            SecretHub.SecretVersion secret = client.Read("secrethub-xgo/dotnet/test/test-secret");
+            SecretHub.SecretVersion secret = client.Read("secrethub/xgo/dotnet/test/test-secret");
             Assert.Equal(new Guid("a2628f70-dade-49b4-b4db-eca16c15e1d2"), secret.SecretVersionID);
             Assert.Equal(new Guid("5b6a82f7-1b55-4e23-ac76-0a4f1d2fa826"), secret.Secret.SecretID);
             Assert.Equal(2, secret.Version);
@@ -28,7 +28,7 @@ namespace SecretHubTest
         {
             var client = new SecretHub.Client();
             Regex expectedErrorRegex = new Regex(@"^.*\(server\.secret_not_found\) $");
-            var ex = Assert.Throws<ApplicationException>(() => client.Read("secrethub-xgo/dotnet/test/not-this-one"));
+            var ex = Assert.Throws<ApplicationException>(() => client.Read("secrethub/xgo/dotnet/test/not-this-one"));
             Assert.True(expectedErrorRegex.IsMatch(ex.Message), "error should end in the (server.secret_not_found) error code");
         }
 
@@ -36,7 +36,7 @@ namespace SecretHubTest
         public void TestReadStringSuccess()
         {
             var client = new SecretHub.Client();
-            string secret = client.ReadString("secrethub-xgo/dotnet/test/test-secret");
+            string secret = client.ReadString("secrethub/xgo/dotnet/test/test-secret");
             Assert.Equal("super_secret_value", secret);
         }
 
@@ -45,14 +45,14 @@ namespace SecretHubTest
         {
             var client = new SecretHub.Client();
             Regex expectedErrorRegex = new Regex(@"^.*\(server\.secret_not_found\) $");
-            var ex = Assert.Throws<ApplicationException>(() => client.ReadString("secrethub-xgo/dotnet/test/not-this-one"));
+            var ex = Assert.Throws<ApplicationException>(() => client.ReadString("secrethub/xgo/dotnet/test/not-this-one"));
             Assert.True(expectedErrorRegex.IsMatch(ex.Message), "error should end in the (server.secret_not_found) error code");
         }
 
         [Fact]
         public void TestResolveSuccess() {
             var client = new SecretHub.Client();
-            Assert.Equal("super_secret_value", client.Resolve("secrethub://secrethub-xgo/dotnet/test/test-secret"));
+            Assert.Equal("super_secret_value", client.Resolve("secrethub://secrethub/xgo/dotnet/test/test-secret"));
         }
 
         [Theory]
@@ -66,8 +66,8 @@ namespace SecretHubTest
         }
 
         [Theory]
-        [InlineData("secrethub-xgo/dotnet/test/test-secret", true)]
-        [InlineData("secrethub-xgo/dotnet/test/not-this-one", false)]
+        [InlineData("secrethub/xgo/dotnet/test/test-secret", true)]
+        [InlineData("secrethub/xgo/dotnet/test/not-this-one", false)]
         public void TestExists(string path, bool expectedTestResult) {
             var client = new SecretHub.Client();
             Assert.Equal(expectedTestResult, client.Exists(path));
@@ -85,26 +85,26 @@ namespace SecretHubTest
         [Fact]
         public void TestWriteSuccess() {
             var client = new SecretHub.Client();
-            client.Write("secrethub-xgo/dotnet/test/new-secret", "new_secret_value");
-            String secret = client.ReadString("secrethub-xgo/dotnet/test/new-secret");
+            client.Write("secrethub/xgo/dotnet/test/new-secret", "new_secret_value");
+            String secret = client.ReadString("secrethub/xgo/dotnet/test/new-secret");
             Assert.Equal("new_secret_value", secret);
-            client.Remove("secrethub-xgo/dotnet/test/new-secret");
+            client.Remove("secrethub/xgo/dotnet/test/new-secret");
         }
 
         [Fact]
         public void TestRemoveSuccess() {
             var client = new SecretHub.Client();
-            client.Write("secrethub-xgo/dotnet/test/delete-secret", "delete_secret_value");
-            Assert.True(client.Exists("secrethub-xgo/dotnet/test/delete-secret"));
-            client.Remove("secrethub-xgo/dotnet/test/delete-secret");
-            Assert.False(client.Exists("secrethub-xgo/dotnet/test/delete-secret"));
+            client.Write("secrethub/xgo/dotnet/test/delete-secret", "delete_secret_value");
+            Assert.True(client.Exists("secrethub/xgo/dotnet/test/delete-secret"));
+            client.Remove("secrethub/xgo/dotnet/test/delete-secret");
+            Assert.False(client.Exists("secrethub/xgo/dotnet/test/delete-secret"));
         }
 
         [Fact]
         public void TestRemoveFail() {
             var client = new SecretHub.Client();
             Regex expectedErrorRegex = new Regex(@"^.*\(server\.secret_not_found\) $");
-            var ex = Assert.Throws<ApplicationException>(() => client.Remove("secrethub-xgo/dotnet/test/not-this-one"));
+            var ex = Assert.Throws<ApplicationException>(() => client.Remove("secrethub/xgo/dotnet/test/not-this-one"));
             Assert.True(expectedErrorRegex.IsMatch(ex.Message), "error should end in the (server.secret_not_found) error code");
         }
     }
