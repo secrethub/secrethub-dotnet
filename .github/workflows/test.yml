@@ -7,5 +7,4 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - run: export SECRETHUB_CREDENTIAL=$(cat test_sercive.cred) 
       - run: make dotnet-test
