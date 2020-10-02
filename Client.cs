@@ -44,6 +44,12 @@ public class Client : global::System.IDisposable {
     }
   }
 
+  public void ExportEnv(System.Collections.Generic.Dictionary<string,string> env) {
+      foreach(System.Collections.Generic.KeyValuePair<string, string> envVar in env) {
+          System.Environment.SetEnvironmentVariable(envVar.Key, envVar.Value);
+      }
+  }
+
   public Client() : this(SecretHubXGOPINVOKE.new_Client(), true) {
     if (SecretHubXGOPINVOKE.SWIGPendingException.Pending) throw SecretHubXGOPINVOKE.SWIGPendingException.Retrieve();
   }
