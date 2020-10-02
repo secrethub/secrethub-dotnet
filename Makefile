@@ -49,8 +49,8 @@ swig:
 
 # Environment variables used in tests
 define TEST_ENV_VARS
-TEST=secrethub://secrethub-xgo/dotnet/test-secret \
-OTHER_TEST=secrethub://secrethub-xgo/dotnet/other-test-secret \
+TEST=secrethub://secrethub/xgo/dotnet/test/test-secret \
+OTHER_TEST=secrethub://secrethub/xgo/dotnet/test/other-test-secret \
 TEST_MORE_EQUALS=this=has=three=equals
 endef
 .PHONY: dotnet-test
@@ -59,7 +59,7 @@ dotnet-test: lib
 	@cp $(CSHARP_FILES) test
 	@dotnet publish test/secrethub.csproj -o build --nologo
 ifeq (OS_VAR, Windows_NT)
-	@mv SecretHubXGOSe.dll build
+	@mv SecretHubXGO.dll build
 else
 	@mv libSecretHubXGO.so build
 endif
