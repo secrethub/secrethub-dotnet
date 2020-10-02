@@ -1,19 +1,10 @@
 name: publish
 on:
   push:
-    branches: 
-      - master
+    tags: 
+      - '*'
 
 jobs:
-  test:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-      - run: make dotnet-test
-        env:
-          SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
   publish:
     runs-on: ubuntu-20.04
     steps:
@@ -21,4 +12,4 @@ jobs:
         with:
           submodules: true
       - run: sudo apt install -y gcc-mingw-w64
-      - run: make nupkg
+      - run: make nupkg-publish

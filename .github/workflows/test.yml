@@ -1,9 +1,5 @@
 name: test
-on:
-  push:
-    branches:
-      - '**'
-      - '!master'
+on: [push]
 
 jobs:
   test:
