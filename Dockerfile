@@ -1,12 +1,15 @@
-from mcr.microsoft.com/dotnet/core/sdk:3.1
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
 
 ENV SWIG_VERSION 4.0.2
 ENV GO_VERSION 1.15.2
 
 # Install gcc
 RUN apt-get update && \
-    printf "y" | apt-get install build-essential
+    apt-get install -y build-essential
     
+# Install gcc-mingv-w64
+RUN apt install -y gcc-mingw-w64
+
 # Install PCRE
 RUN apt-get install -y libpcre3-dev
 
@@ -31,12 +34,4 @@ RUN wget https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz && \
 ENV GOROOT /usr/local/go/
 ENV PATH $PATH:$GOROOT/bin/
 
-# Prepare testing
-RUN mkdir secrethub-dotnet/
 WORKDIR /secrethub-dotnet/
-COPY *.cs *.i *.csproj Makefile ./
-COPY secrethub-xgo ./secrethub-xgo
-COPY test ./test
-RUN ls
-
-CMD make dotnet-test
