@@ -12,8 +12,8 @@ jobs:
         with:
           submodules: true
       - run: make dotnet-test
-          env:
-            SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
+        env:
+          SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
   publish:
     runs-on: ubuntu-20.04
     steps:
