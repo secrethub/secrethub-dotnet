@@ -129,9 +129,6 @@ public class Secret : global::System.IDisposable {
 
   }
 
-  public Secret() : this(SecretHubXGOPINVOKE.new_Secret(), true) {
-  }
-
 }
 
 }

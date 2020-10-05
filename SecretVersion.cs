@@ -102,9 +102,6 @@ public class SecretVersion : global::System.IDisposable {
     } 
   }
 
-  public SecretVersion() : this(SecretHubXGOPINVOKE.new_SecretVersion(), true) {
-  }
-
 }
 
 }
