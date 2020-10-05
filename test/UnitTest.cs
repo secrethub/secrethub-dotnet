@@ -9,7 +9,6 @@ namespace SecretHubTest
         [Fact]
         public void TestReadSuccess()
         {
-            SecretHub.SecretVersion expectedSecret = new SecretHub.SecretVersion();
             var client = new SecretHub.Client();
             SecretHub.SecretVersion secret = client.Read("secrethub/xgo/dotnet/test/test-secret:3");
             Assert.Equal(new Guid("529beaaf-9934-432f-a6b0-c5cb7e847458"), secret.SecretVersionID);
