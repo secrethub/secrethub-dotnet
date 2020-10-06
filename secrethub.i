@@ -1,5 +1,14 @@
 %module SecretHubXGO
 
+// Add ExportEnv method
+%typemap(cscode) struct Client %{
+  public void ExportEnv(System.Collections.Generic.Dictionary<string,string> env) {
+      foreach(System.Collections.Generic.KeyValuePair<string, string> envVar in env) {
+          System.Environment.SetEnvironmentVariable(envVar.Key, envVar.Value);
+      }
+  }
+%}
+
 // Map the time type to System.DateTime.
 %apply long long { time };
 %typemap(cstype) time "System.DateTime"
