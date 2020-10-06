@@ -56,7 +56,7 @@ endef
 .PHONY: test
 test: lib
 	@echo "Testing the library..."
-	@mv $(CSHARP_FILES) test
+	@cp $(CSHARP_FILES) test
 	@dotnet publish test/secrethub.csproj -o build --nologo
 ifeq (OS_VAR, Windows_NT)
 	@mv SecretHubXGO.dll build

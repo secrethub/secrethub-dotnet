@@ -34,4 +34,9 @@ RUN wget https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz && \
 ENV GOROOT /usr/local/go/
 ENV PATH $PATH:$GOROOT/bin/
 
+# Install SecretHub
+RUN echo "deb [trusted=yes] https://apt.secrethub.io stable main" > /etc/apt/sources.list.d/secrethub.sources.list && \
+	apt-get update && \
+	apt-get install -y secrethub-cli
+
 WORKDIR /secrethub-dotnet/
