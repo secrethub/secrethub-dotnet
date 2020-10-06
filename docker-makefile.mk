@@ -74,30 +74,6 @@ nupkg: lib-all
 	@make -f docker-makefile.mk clean --no-print-directory
 	@echo "NuGet Package Ready ^-^"
 
-.PHONY: deps
-deps:
-# 	install gcc
-	@sudo apt install -y gcc
-	@sudo apt install -y gcc-mingw-w64
-# 	install pcre
-	@sudo apt install -y libpcre3-dev
-# 	install swig
-	@wget https://downloads.sourceforge.net/swig/swig-$(SWIG_VERSION).tar.gz
-	@mkdir -p tmp && tar -xzvf swig-$(SWIG_VERSION).tar.gz -C tmp --strip-components 1
-	@cd tmp && ./configure&& sudo make && sudo make install
-	@rm -rf tmp swig-$(SWIG_VERSION).tar.gz
-	@echo "export SWIG_PATH=usr/local/share/swig/bin" | sudo tee -a /etc/profile
-	@echo "export PATH=$(SWIG_PATH):$(PATH)" | sudo tee -a /etc/profile
-	@source /etc/profile
-#   install dotnet
-	@wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-	@sudo dpkg -i packages-microsoft-prod.deb
-	@sudo apt-get update 
-	@sudo apt-get install -y apt-transport-https
-	@sudo apt-get update
-	@sudo apt-get install -y dotnet-sdk-3.1
-	@rm -f packages-microsoft-prod.deb
-
 .PHONY: clean
 clean:
 	@rm -f $(CGO_FILES) $(SWIG_FILES) $(OUT_FILES) $(addprefix test/, $(CSHARP_FILES))
