@@ -71,6 +71,7 @@ nupkg: lib-all
 	@echo "Making the NuGet Package..."
 	@dotnet pack secrethub.csproj -o build --nologo
 	@mv build/SecretHub.*.nupkg .
+	@chmod 665 *.nupkg
 	@make -f docker-makefile.mk clean --no-print-directory
 	@echo "NuGet Package Ready ^-^"
 
