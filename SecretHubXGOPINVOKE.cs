@@ -274,9 +274,6 @@ class SecretHubXGOPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("SecretHubXGO", EntryPoint="CSharp_SecretHub_Secret_CreatedAt_get")]
   public static extern long Secret_CreatedAt_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("SecretHubXGO", EntryPoint="CSharp_SecretHub_new_Secret")]
-  public static extern global::System.IntPtr new_Secret();
-
   [global::System.Runtime.InteropServices.DllImport("SecretHubXGO", EntryPoint="CSharp_SecretHub_delete_Secret")]
   public static extern void delete_Secret(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -315,9 +312,6 @@ class SecretHubXGOPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("SecretHubXGO", EntryPoint="CSharp_SecretHub_SecretVersion_Status_get")]
   public static extern string SecretVersion_Status_get(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("SecretHubXGO", EntryPoint="CSharp_SecretHub_new_SecretVersion")]
-  public static extern global::System.IntPtr new_SecretVersion();
 
   [global::System.Runtime.InteropServices.DllImport("SecretHubXGO", EntryPoint="CSharp_SecretHub_delete_SecretVersion")]
   public static extern void delete_SecretVersion(global::System.Runtime.InteropServices.HandleRef jarg1);

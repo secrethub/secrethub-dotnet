@@ -45,7 +45,7 @@ public class Secret : global::System.IDisposable {
   }
 
   public System.Guid SecretID {
-    // uuids are read only
+    // properties of Secret and SecretVersion are read only
 
     get {
         System.Guid ret = System.Guid.Parse(SecretHubXGOPINVOKE.Secret_SecretID_get(swigCPtr));
@@ -55,7 +55,7 @@ public class Secret : global::System.IDisposable {
   }
 
   public System.Guid DirID {
-    // uuids are read only
+    // properties of Secret and SecretVersion are read only
 
     get {
         System.Guid ret = System.Guid.Parse(SecretHubXGOPINVOKE.Secret_DirID_get(swigCPtr));
@@ -65,7 +65,7 @@ public class Secret : global::System.IDisposable {
   }
 
   public System.Guid RepoID {
-    // uuids are read only
+    // properties of Secret and SecretVersion are read only
 
     get {
         System.Guid ret = System.Guid.Parse(SecretHubXGOPINVOKE.Secret_RepoID_get(swigCPtr));
@@ -75,9 +75,8 @@ public class Secret : global::System.IDisposable {
   }
 
   public string Name {
-    set {
-      SecretHubXGOPINVOKE.Secret_Name_set(swigCPtr, value);
-    } 
+    // properties of Secret and SecretVersion are read only
+
     get {
       string ret = SecretHubXGOPINVOKE.Secret_Name_get(swigCPtr);
       return ret;
@@ -85,9 +84,8 @@ public class Secret : global::System.IDisposable {
   }
 
   public string BlindName {
-    set {
-      SecretHubXGOPINVOKE.Secret_BlindName_set(swigCPtr, value);
-    } 
+    // properties of Secret and SecretVersion are read only
+
     get {
       string ret = SecretHubXGOPINVOKE.Secret_BlindName_get(swigCPtr);
       return ret;
@@ -95,9 +93,8 @@ public class Secret : global::System.IDisposable {
   }
 
   public int VersionCount {
-    set {
-      SecretHubXGOPINVOKE.Secret_VersionCount_set(swigCPtr, value);
-    } 
+    // properties of Secret and SecretVersion are read only
+
     get {
       int ret = SecretHubXGOPINVOKE.Secret_VersionCount_get(swigCPtr);
       return ret;
@@ -105,9 +102,8 @@ public class Secret : global::System.IDisposable {
   }
 
   public int LatestVersion {
-    set {
-      SecretHubXGOPINVOKE.Secret_LatestVersion_set(swigCPtr, value);
-    } 
+    // properties of Secret and SecretVersion are read only
+
     get {
       int ret = SecretHubXGOPINVOKE.Secret_LatestVersion_get(swigCPtr);
       return ret;
@@ -115,9 +111,8 @@ public class Secret : global::System.IDisposable {
   }
 
   public string Status {
-    set {
-      SecretHubXGOPINVOKE.Secret_Status_set(swigCPtr, value);
-    } 
+    // properties of Secret and SecretVersion are read only
+
     get {
       string ret = SecretHubXGOPINVOKE.Secret_Status_get(swigCPtr);
       return ret;
@@ -125,16 +120,13 @@ public class Secret : global::System.IDisposable {
   }
 
   public System.DateTime CreatedAt {
-    // time is read only
+    // properties of Secret and SecretVersion are read only
 
     get {
         System.DateTime ret = System.DateTimeOffset.FromUnixTimeSeconds(SecretHubXGOPINVOKE.Secret_CreatedAt_get(swigCPtr)).UtcDateTime;
         return ret;
     }
 
-  }
-
-  public Secret() : this(SecretHubXGOPINVOKE.new_Secret(), true) {
   }
 
 }
