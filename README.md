@@ -92,7 +92,7 @@ Dictionary<string, string> resolvedEnv = client.ResolveEnv();
 
 would lead to the `resolvedEnv` containing the following contents:
 ```csharp
-Doctionary<string, string>
+Dictionary<string, string>
 {
     {"MY_SECRET", "the value of the secret path/to/secret"},
     {"OTHER_VARIABLE", "some-other-value"}

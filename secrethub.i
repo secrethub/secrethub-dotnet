@@ -18,9 +18,6 @@
         return ret;
     }
 %}
-%typemap(csvarin, excode=SWIGEXCODE) time %{
-    // time is read only
-%}
 
 // Map the uuid type to System.Guid.
 %apply char* { uuid };
@@ -31,9 +28,6 @@
         return ret;
     }
 %}
-%typemap(csvarin, excode=SWIGEXCODE) uuid %{
-    // uuids are read only
-%}
 
 // Map return value of ResolveEnv to Dictionary<string, string>.
 %typemap(cstype) char* ResolveEnv "System.Collections.Generic.Dictionary<string,string>"
@@ -42,5 +36,10 @@
     $excode
     return res;
 }
+
+
+%typemap(csvarin) SWIGTYPE, char*, uuid, time %{
+    // properties of Secret and SecretVersion are read only
+%}
 
 %include secrethub-xgo/secrethub.i
