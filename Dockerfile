@@ -39,4 +39,8 @@ RUN echo "deb [trusted=yes] https://apt.secrethub.io stable main" > /etc/apt/sou
 	apt-get update && \
 	apt-get install -y secrethub-cli
 
+WORKDIR /home/secrethub-dotnet/secrethub-xgo/
+COPY secrethub-xgo/ ./
+RUN go mod download -x
+
 WORKDIR /home/secrethub-dotnet/
