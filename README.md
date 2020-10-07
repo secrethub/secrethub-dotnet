@@ -1,34 +1,30 @@
 # SecretHub Client for .NET
 
-SecretHub - XGO wraps the `secrethub-go` client with `cgo` exported functions so it can be called form other languages, e.g. C, C#, Python, Ruby, NodeJS, and Java. To generate the code that will then be wrapped in the library used by a certian programming language, we use `swig`.
+This repository provides a .NET client for the SecretHub Secrets Management API. 
+
+> [SecretHub](https://secrethub.io) is a secrets management tool that works for every engineer and allows you to securely provision passwords and keys throughout your entire stack with just a few lines of code.
 
 ## Table of Contents
- - [Prerequisites](#prerequisites)
  - [Installation](#installation)
- - [Building from source](#building-from-source)
  - [Usage](#usage)
- - [Resources](#resources)
  - [Getting help](#getting-help)
-
-## Prerequisites
-To make use of the package, you will need to have the following installed:
- - [.NET Core](https://docs.microsoft.com/en-gb/dotnet/core/install/)
+ - [Developing](#developing)
 
 ## Installation
 
-To install SecretHub package from NuGet Gallery, run the following command in your project's directory: 
+To install the SecretHub package from NuGet Gallery, run the following command in your project's directory: 
+
 ```bash
 dotnet add package SecretHub --version 0.1.0
 ```
-or you can add the following line to your project's `csproj` file:
+
+Or you can add the following line to your project's `csproj` file:
+
 ```xml
 <PackageReference Include="SecretHub" Version="0.1.0" />
 ```
 
-## Building from source 
-1. Make sure you have [Golang](https://golang.org/doc/install) installed.
-1. Execute `make nupkg` from the Makefile
-1. Go to your .NET project direcotry and run the following command: `dotnet add package SecretHub -s <path_to_your_secrethub-xgo_repo>`.
+The package supports Linux and Windows for 32-bit and 64-bit architectures and works with both .NET Core and the full .NET Framework. 
 
 ## Usage
 Before doing any calls to the library, you need to create you SecretHub client:
@@ -92,11 +88,20 @@ Dictionary<string, string> resolvedEnv = client.ResolveEnv();
 
 would lead to the `resolvedEnv` containing the following contents:
 ```csharp
-Doctionary<string, string>
+Dictionary<string, string>
 {
     {"MY_SECRET", "the value of the secret path/to/secret"},
     {"OTHER_VARIABLE", "some-other-value"}
 }
+```
+
+### `ExportEnv(IDictionary<string, string> env)`
+Adds the environment variables defined in the `env` dictionary to the environment of the process.
+If any of them are already present in the environment, they will be overwritten.
+
+This method can be used together with `ResolveEnv` to resolve all secret references in the environment:
+```csharp
+client.ExportEnv(client.ResolveEnv());
 ```
 
 ### Exceptions
@@ -112,16 +117,18 @@ catch(ApplicationException ex)
 }
 ```
 
-## Resources
-
-For example code and more reading on the specific tech behind this cross language magic, see these resources:
-
-- https://medium.com/learning-the-go-programming-language/calling-go-functions-from-other-languages-4c7d8bcc69bf
-- https://github.com/vladimirvivien/go-cshared-examples/
-- https://github.com/draffensperger/go-interlang
-- https://golang.org/cmd/cgo/
-- http://www.swig.org/
-
 ## Getting Help
 
 Come chat with us on [Discord](https://discord.gg/EQcE87s) or email us at [support@secrethub.io](mailto:support@secrethub.io)
+
+
+## Developing
+
+Note that most of the code in this repository is automatically generated from the [SecretHub XGO project](https://github.com/secrethub/secrethub-xgo), which wraps the `secrethub-go` client with `cgo` exported functions so it can be called form other languages, e.g. C, C#, Python, Ruby, NodeJS, and Java. To generate the code [SWIG](http://www.swig.org/) is used. 
+
+See the [SecretHub XGO repository](https://github.com/secrethub/secrethub-xgo) for more details.
+
+### Building from source 
+1. Make sure you have [Golang](https://golang.org/doc/install) installed.
+1. Execute `make nupkg` from the Makefile
+1. Go to your .NET project directory and run the following command: `dotnet add package SecretHub -s <path_to_your_secrethub-xgo_repo>`.
