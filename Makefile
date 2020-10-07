@@ -6,13 +6,13 @@ secrethub-dotnet-container:
 
 .PHONY: test
 test: secrethub-dotnet-container
-	@docker run --rm -v $(PWD):/secrethub-dotnet -e SECRETHUB_CREDENTIAL=`cat $(HOME)/.secrethub/credential` \
+	@docker run --rm -v $(PWD):/home/secrethub-dotnet -e SECRETHUB_CREDENTIAL=`cat $(HOME)/.secrethub/credential` \
 	dotnet-container bash -c "make -f docker-makefile.mk test"
 	@make -f docker-makefile.mk clean --no-print-directory
 
 .PHONY: nupkg
 nupkg: secrethub-dotnet-container
-	@docker run --rm -v $(PWD):/secrethub-dotnet \
+	@docker run --rm -v $(PWD):/home/secrethub-dotnet \
 	dotnet-container bash -c "make -f docker-makefile.mk nupkg"
 	@make -f docker-makefile.mk clean --no-print-directory
 
