@@ -40,5 +40,3 @@ RUN echo "deb [trusted=yes] https://apt.secrethub.io stable main" > /etc/apt/sou
 	apt-get install -y secrethub-cli
 
 WORKDIR /home/secrethub-dotnet/
-RUN adduser --disabled-login --gecos "" -q user-dotnet
-USER user-dotnet
