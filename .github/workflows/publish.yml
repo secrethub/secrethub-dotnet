@@ -13,3 +13,4 @@ jobs:
           submodules: true
       - run: sudo apt install -y gcc-mingw-w64
       - run: make nupkg-publish
+      
