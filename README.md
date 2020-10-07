@@ -95,6 +95,15 @@ Dictionary<string, string>
 }
 ```
 
+### `ExportEnv(IDictionary<string, string> env)`
+Adds the environment variables defined in the `env` dictionary to the environment of the process.
+If any of them are already present in the environment, they will be overwritten.
+
+This method can be used together with `ResolveEnv` to resolve all secret references in the environment:
+```csharp
+client.ExportEnv(client.ResolveEnv());
+```
+
 ### Exceptions
 Any error encountered by the SecretHub client will be thrown as an `ApplicationException`. The full error message can be retrieved from the `Message` field.
 ```csharp
