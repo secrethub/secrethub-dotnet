@@ -76,7 +76,7 @@ nupkg: lib-all
 
 .PHONY: nupkg-publish
 nupkg-publish: nupkg
-	dotnet nuget push SecretHub.*.nupkg --api-key ${API_KEY} --source https://api.nuget.org/v3/index.json
+	dotnet nuget push SecretHub.*.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
 
 .PHONY: deps
 deps:

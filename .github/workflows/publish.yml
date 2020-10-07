@@ -13,4 +13,6 @@ jobs:
           submodules: true
       - run: sudo apt install -y gcc-mingw-w64
       - run: make nupkg-publish
-      
+        env:
+          SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
+          NUGET_API_KEY: secrethub://secrethub/xgo/dotnet/prd/nuget/api_key

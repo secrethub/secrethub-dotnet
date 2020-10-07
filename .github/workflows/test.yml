@@ -11,4 +11,3 @@ jobs:
       - run: make dotnet-test
         env:
           SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
-          
