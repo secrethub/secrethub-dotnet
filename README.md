@@ -1,6 +1,6 @@
 # SecretHub Client for .NET
 
-SecretHub - XGO wraps the `secrethub-go` client with `cgo` exported functions so it can be called form other languages, e.g. C, C#, Python, Ruby, NodeJS, and Java. To generate the code that will then be wrapped in the library used by a certian programming language, we use [`swig`](http://www.swig.org/).
+SecretHub - XGO wraps the `secrethub-go` client with `cgo` exported functions so it can be called form other languages, e.g. C, C#, Python, Ruby, NodeJS, and Java. To generate the code that will then be wrapped in the library used by a certian programming language, we use `swig`.
 
 ## Table of Contents
  - [Prerequisites](#prerequisites)
@@ -49,7 +49,7 @@ Console.WriteLine("The secret value is " + secret.Data);
 ### `ReadString(string path)`
 Retrieve a secret as a string.
  ```csharp
- string secret = client.ReadString("path/to/secret");
+ string secret = client.Read("path/to/secret");
  Console.WriteLine("The secret value is " + secret);
  ```
 
@@ -92,7 +92,7 @@ Dictionary<string, string> resolvedEnv = client.ResolveEnv();
 
 would lead to the `resolvedEnv` containing the following contents:
 ```csharp
-Dictionary<string, string>
+Doctionary<string, string>
 {
     {"MY_SECRET", "the value of the secret path/to/secret"},
     {"OTHER_VARIABLE", "some-other-value"}
@@ -106,7 +106,7 @@ try
 {
 	string secret = client.Read("path/to/secret");
 } 
-catch (ApplicationException ex)
+catch(ApplicationException ex)
 {
 	Console.WriteLine(ex.Message);
 }
