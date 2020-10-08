@@ -63,6 +63,14 @@ namespace SecretHubTest
             System.Collections.Generic.IDictionary<string,string> res = client.ResolveEnv();
             Assert.Equal(secretValue, res[envVarName]);
         }
+
+        [Fact]
+        public void TestResolveEnvFail() {
+            var client = new SecretHub.Client();
+            var ex = Assert.Throws<ApplicationException>(() => client.ResolveEnv());
+            Regex expectedErrorRegex = new Regex(@"^.*\(server\.secret_not_found\) $");
+            Assert.True(expectedErrorRegex.IsMatch(ex.Message), "error should end in the (server.secret_not_found) error code");
+        }
         
         [Fact]
         public void TestExportEnv() {
