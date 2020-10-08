@@ -1,4 +1,4 @@
-# SecretHub Client for .NET
+# SecretHub Client for .NET <sup>[BETA](#BETA)</sup>
 
 This repository provides a .NET client for the SecretHub Secrets Management API. 
 
@@ -15,13 +15,13 @@ This repository provides a .NET client for the SecretHub Secrets Management API.
 To install the SecretHub package from NuGet Gallery, run the following command in your project's directory: 
 
 ```bash
-dotnet add package SecretHub --version 0.1.0
+dotnet add package SecretHub --version 0.2.0
 ```
 
 Or you can add the following line to your project's `csproj` file:
 
 ```xml
-<PackageReference Include="SecretHub" Version="0.1.0" />
+<PackageReference Include="SecretHub" Version="0.2.0" />
 ```
 
 The package supports Linux and Windows for 32-bit and 64-bit architectures and works with both .NET Core and the full .NET Framework. 
@@ -121,6 +121,12 @@ catch(ApplicationException ex)
 
 Come chat with us on [Discord](https://discord.gg/EQcE87s) or email us at [support@secrethub.io](mailto:support@secrethub.io)
 
+## BETA
+This project is currently in beta and we'd love your feedback! Check out the [issues](https://github.com/secrethub/secrethub-dotnet/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) and feel free suggest cool ideas, use cases, or improvements.
+
+Because it's still in beta, you can expect to see some changes introduced. Pull requests are very welcome.
+
+For support, send us a message on [Discord](https://discord.gg/wcxV5RD) or send an email to support@secrethub.io
 
 ## Developing
 
