@@ -1,4 +1,4 @@
-# SecretHub Client for .NET <sup>[BETA](#BETA)</sup>
+# SecretHub Client for .NET <sup>[BETA](#beta)</a></sup>
 
 This repository provides a .NET client for the SecretHub Secrets Management API. 
 
