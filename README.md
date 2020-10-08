@@ -8,6 +8,7 @@ This repository provides a .NET client for the SecretHub Secrets Management API.
  - [Installation](#installation)
  - [Usage](#usage)
  - [Getting help](#getting-help)
+ - [BETA](#beta)
  - [Developing](#developing)
 
 ## Installation
