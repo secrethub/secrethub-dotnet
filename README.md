@@ -108,8 +108,7 @@ client.ExportEnv(client.ResolveEnv());
 ```
 
 ### Exceptions
-Any error encountered by the SecretHub client will be thrown as an `ApplicationException`. The full error message can be retrieved from the `Message` field.
-It is recommended to capture these exceptions as an `Exception`. 
+Any error encountered by the SecretHub client will be thrown as an `Exception`. The full error message can be retrieved from the `Message` field.
 ```csharp
 try 
 {
