@@ -27,6 +27,8 @@ Or you can add the following line to your project's `csproj` file:
 
 The package supports Linux and Windows for 32-bit and 64-bit architectures and works with both .NET Core and the full .NET Framework. 
 
+Make sure you have create a SecretHub account and set up a credential on your system before using the library. See the [Credential](#credential) section for more info. 
+
 ## Usage
 Before doing any calls to the library, you need to create you SecretHub client:
 ```csharp
@@ -117,6 +119,15 @@ catch(ApplicationException ex)
 	Console.WriteLine(ex.Message);
 }
 ```
+
+### Credential
+To use the SecretHub .NET client, you need to provide a credential for your __SecretHub__ account.
+You can sign up for a free developer account [here](https://signup.secrethub.io/).
+
+After signup, the credential is located at `$HOME/.secrethub/credential` by default.
+`secrethub.NewClient()` automatically uses this credential.
+
+You can also provide a credential through the `SECRETHUB_CREDENTIAL` environment variable.
 
 ## Getting Help
 
