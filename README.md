@@ -1,4 +1,4 @@
-# SecretHub Client for .NET
+# SecretHub Client for .NET <sup>[BETA](#beta)</a></sup>
 
 This repository provides a .NET client for the SecretHub Secrets Management API. 
 
@@ -8,6 +8,7 @@ This repository provides a .NET client for the SecretHub Secrets Management API.
  - [Installation](#installation)
  - [Usage](#usage)
  - [Getting help](#getting-help)
+ - [BETA](#beta)
  - [Developing](#developing)
 
 ## Installation
@@ -15,16 +16,18 @@ This repository provides a .NET client for the SecretHub Secrets Management API.
 To install the SecretHub package from NuGet Gallery, run the following command in your project's directory: 
 
 ```bash
-dotnet add package SecretHub --version 0.1.0
+dotnet add package SecretHub --version 0.2.0
 ```
 
 Or you can add the following line to your project's `csproj` file:
 
 ```xml
-<PackageReference Include="SecretHub" Version="0.1.0" />
+<PackageReference Include="SecretHub" Version="0.2.0" />
 ```
 
 The package supports Linux and Windows for 32-bit and 64-bit architectures and works with both .NET Core and the full .NET Framework. 
+
+Make sure you have create a SecretHub account and set up a credential on your system before using the library. See the [Credential](#credential) section for more info. 
 
 ## Usage
 Before doing any calls to the library, you need to create you SecretHub client:
@@ -105,22 +108,37 @@ client.ExportEnv(client.ResolveEnv());
 ```
 
 ### Exceptions
-Any error encountered by the SecretHub client will be thrown as an `ApplicationException`. The full error message can be retrieved from the `Message` field.
+Any error encountered by the SecretHub client will be thrown as an `Exception`. The full error message can be retrieved from the `Message` field.
 ```csharp
 try 
 {
 	string secret = client.Read("path/to/secret");
 } 
-catch(ApplicationException ex)
+catch(Exception ex)
 {
 	Console.WriteLine(ex.Message);
 }
 ```
 
+### Credential
+To use the SecretHub .NET client, you need to provide a credential for your __SecretHub__ account.
+You can sign up for a free developer account [here](https://signup.secrethub.io/).
+
+After signup, the credential is located at `$HOME/.secrethub/credential` by default.
+`secrethub.NewClient()` automatically uses this credential.
+
+You can also provide a credential through the `SECRETHUB_CREDENTIAL` environment variable.
+
 ## Getting Help
 
 Come chat with us on [Discord](https://discord.gg/EQcE87s) or email us at [support@secrethub.io](mailto:support@secrethub.io)
 
+## BETA
+This project is currently in beta and we'd love your feedback! Check out the [issues](https://github.com/secrethub/secrethub-dotnet/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) and feel free suggest cool ideas, use cases, or improvements.
+
+Because it's still in beta, you can expect to see some changes introduced. Pull requests are very welcome.
+
+For support, send us a message on [Discord](https://discord.gg/wcxV5RD) or send an email to support@secrethub.io
 
 ## Developing
 
