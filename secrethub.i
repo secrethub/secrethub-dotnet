@@ -32,9 +32,9 @@
 // Map return value of ResolveEnv to Dictionary<string, string>.
 %typemap(cstype) char* ResolveEnv "System.Collections.Generic.Dictionary<string,string>"
 %typemap(csout, excode=SWIGEXCODE) char* ResolveEnv {
-    var temp = $imcall;
+    var jsonEnv = $imcall;
     $excode
-    var res = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, string>>(temp);
+    var res = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, string>>(jsonEnv);
     $excode
     return res;
 }
