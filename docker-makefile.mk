@@ -53,6 +53,9 @@ TEST=secrethub://secrethub/xgo/dotnet/test/test-secret \
 OTHER_TEST=secrethub://secrethub/xgo/dotnet/test/other-test-secret \
 TEST_MORE_EQUALS=this=has=three=equals
 endef
+define TEST_ENV_VARS_FAIL
+TEST=secrethub://secrethub/xgo/dotnet/test/non-existent-secret
+endef
 .PHONY: test
 test: lib
 	@echo "Testing the library..."
@@ -63,7 +66,8 @@ ifeq (OS_VAR, Windows_NT)
 else
 	@mv libSecretHubXGO.so build
 endif
-	@$(TEST_ENV_VARS) dotnet test build/secrethub.dll --nologo
+	@$(TEST_ENV_VARS) dotnet test build/secrethub.dll --nologo --filter FullyQualifiedName!=SecretHubTest.TestSuite.TestResolveEnvFail
+	@$(TEST_ENV_VARS_FAIL) dotnet test build/secrethub.dll --nologo --filter FullyQualifiedName=SecretHubTest.TestSuite.TestResolveEnvFail
 	@make -f docker-makefile.mk clean --no-print-directory
 
 .PHONY: nupkg
