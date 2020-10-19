@@ -73,7 +73,10 @@ public class Client : global::System.IDisposable {
   }
 
   public System.Collections.Generic.Dictionary<string,string> ResolveEnv() {
-    var res = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, string>>(SecretHubXGOPINVOKE.Client_ResolveEnv(swigCPtr));
+    var temp = SecretHubXGOPINVOKE.Client_ResolveEnv(swigCPtr);
+    
+    if (SecretHubXGOPINVOKE.SWIGPendingException.Pending) throw SecretHubXGOPINVOKE.SWIGPendingException.Retrieve();
+    var res = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, string>>(temp);
     
     if (SecretHubXGOPINVOKE.SWIGPendingException.Pending) throw SecretHubXGOPINVOKE.SWIGPendingException.Retrieve();
     return res;
