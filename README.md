@@ -16,13 +16,13 @@ This repository provides a .NET client for the SecretHub Secrets Management API.
 To install the SecretHub package from NuGet Gallery, run the following command in your project's directory: 
 
 ```bash
-dotnet add package SecretHub --version 0.2.0
+dotnet add package SecretHub --version 0.2.1
 ```
 
 Or you can add the following line to your project's `csproj` file:
 
 ```xml
-<PackageReference Include="SecretHub" Version="0.2.0" />
+<PackageReference Include="SecretHub" Version="0.2.1" />
 ```
 
 The package supports Linux and Windows for 32-bit and 64-bit architectures and works with both .NET Core and the full .NET Framework. 
