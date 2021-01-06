@@ -1,4 +1,10 @@
 SHELL = bash
+DOCKER_COMMAND = docker run --rm \
+		-v $$(pwd):/home/secrethub-dotnet \
+		-v $$(go env GOPATH):/root/go \
+		-e SECRETHUB_CREDENTIAL=`cat ${HOME}/.secrethub/credential` \
+		secrethub-dotnet-container \
+		bash -c
 
 .PHONY: container
 container:
@@ -6,14 +12,12 @@ container:
 
 .PHONY: test
 test: container
-	@docker run --rm -v $(PWD):/home/secrethub-dotnet -e SECRETHUB_CREDENTIAL=`cat $(HOME)/.secrethub/credential` \
-	secrethub-dotnet-container bash -c "make -f docker-makefile.mk test"
+	@$(DOCKER_COMMAND) "make -f docker-makefile.mk test"
 	@make -f docker-makefile.mk clean --no-print-directory
 
 .PHONY: nupkg
 nupkg: container
-	@docker run --rm -v $(PWD):/home/secrethub-dotnet \
-	secrethub-dotnet-container bash -c "make -f docker-makefile.mk nupkg"
+	@$(DOCKER_COMMAND) "make -f docker-makefile.mk nupkg"
 	@make -f docker-makefile.mk clean --no-print-directory
 
 .PHONY: nupkg-publish
