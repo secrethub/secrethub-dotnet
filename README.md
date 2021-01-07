@@ -5,6 +5,8 @@ This repository provides a .NET client for the SecretHub Secrets Management API.
 > [SecretHub](https://secrethub.io) is a secrets management tool that works for every engineer and allows you to securely provision passwords and keys throughout your entire stack with just a few lines of code.
 
 ## Table of Contents
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsecrethub%2Fsecrethub-dotnet.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsecrethub%2Fsecrethub-dotnet?ref=badge_shield)
+
  - [Installation](#installation)
  - [Usage](#usage)
  - [Getting help](#getting-help)
@@ -150,3 +152,7 @@ See the [SecretHub XGO repository](https://github.com/secrethub/secrethub-xgo) f
 1. Make sure you have [Golang](https://golang.org/doc/install) installed.
 1. Execute `make nupkg` from the Makefile
 1. Go to your .NET project directory and run the following command: `dotnet add package SecretHub -s <path_to_your_secrethub-xgo_repo>`.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsecrethub%2Fsecrethub-dotnet.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsecrethub%2Fsecrethub-dotnet?ref=badge_large)
