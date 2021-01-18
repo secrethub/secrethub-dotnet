@@ -1,7 +1,7 @@
 SHELL = bash
 DOCKER_COMMAND = docker run --rm \
 		-v $$(pwd):/home/secrethub-dotnet \
-		-v $$(go env GOPATH):/root/go \
+		--mount 'src=secrethub-dotnet-go-deps,dst=/root/go,type=volume' \
 		-e SECRETHUB_CREDENTIAL=`cat ${HOME}/.secrethub/credential` \
 		secrethub-dotnet-container \
 		bash -c
