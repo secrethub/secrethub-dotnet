@@ -1,0 +1,19 @@
+name: publish
+on:
+  push:
+    tags: 
+      - '*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: sudo apt install -y gcc-mingw-w64
+      - uses: secrethub/actions/env-export@v0.2.1
+        env:
+          SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
+          NUGET_API_KEY: secrethub://secrethub/xgo/dotnet/prd/nuget/api_key
+      - run: make nupkg-publish
